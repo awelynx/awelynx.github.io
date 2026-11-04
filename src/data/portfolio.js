@@ -2,14 +2,14 @@
 export const profile = {
   name: "Yuxuan Lin",
   chineseName: "林煜轩",
-  handle: "JerryLinyx",
+  handle: "lynxarv",
   focus: "AI 应用 · 系统工程 · 生成式模型",
   intro:
     "我关注如何让 AI 模型进入可用、可理解、可扩展的真实系统。工程经历覆盖多智能体应用、分布式训练、CUDA 优化与嵌入式机器人。",
   description:
     "林煜轩 Yuxuan Lin，Columbia 计算机工程硕士。探索 AI 应用、分布式系统与生成式模型。项目、研究和技术手记。",
   email: "yl6061@columbia.edu",
-  github: "https://github.com/JerryLinyx",
+  github: "https://github.com/lynxarv",
   linkedin: "https://www.linkedin.com/in/yuxuan0/",
 };
 
@@ -67,7 +67,7 @@ export const publication = {
   authors: ["Hengjia Ran", "Yuxuan Lin", "Huafeng Liu", "Bo Zhao"],
   text: "研究基于生成式流模型的 PET 重建、后验分布建模与不确定性量化，在 Slurm 集群中进行多 GPU 并行训练。",
   paper: "https://ieeexplore.ieee.org/abstract/document/11515791",
-  code: "https://github.com/JerryLinyx/DeepMed-Imaging-Reconstruction",
+  code: "https://github.com/lynxarv/DeepMed-Imaging-Reconstruction",
   project: "/work/probabilistic-imaging/",
 };
 
@@ -97,7 +97,7 @@ export const projects = [
     tags: ["Normalizing Flows", "Bayesian inference", "Multi-GPU"],
     image: "imaging",
     imageAlt: "PET 重建结果对比：OSEM、FBP、真值与 64 个样本的后验均值",
-    repo: "https://github.com/JerryLinyx/DeepMed-Imaging-Reconstruction",
+    repo: "https://github.com/lynxarv/DeepMed-Imaging-Reconstruction",
     paper: "https://ieeexplore.ieee.org/abstract/document/11515791",
     context:
       "医学图像重建不仅关心一张清晰图像，也关心估计是否可靠。将 PET 重建表述为贝叶斯推理问题，可以在重建结果之外进一步研究后验分布与不确定性。",
@@ -132,7 +132,7 @@ export const projects = [
     metricLabel: "相较串行流程的端到端延迟降低",
     image: "fingoat",
     imageAlt: "FinGOAT 的数据源、多智能体推理、网关与存储架构图",
-    repo: "https://github.com/JerryLinyx/FinGOAT",
+    repo: "https://github.com/lynxarv/FinGOAT",
     context:
       "多智能体系统容易陷入串行等待：每一轮分析都依赖前一轮完成，用户也很难理解最终结论从何而来。FinGOAT 将依赖关系显式建模，让独立分析并行运行，并保留完整推理链路。",
     decisions: [
@@ -164,7 +164,7 @@ export const projects = [
     tags: ["PyTorch", "FSDP + LoRA", "CUDA", "Profiling"],
     image: "pacc",
     imageAlt: "不同集体通信操作在各 GPU 频率下的功耗曲线",
-    repo: "https://github.com/JerryLinyx/PACC",
+    repo: "https://github.com/lynxarv/PACC",
     context:
       "训练性能无法只通过模型大小判断。通信、内核执行和并行策略共同决定系统的效率。PACC 使用真实工作负载轨迹构建可复用的分析工作流，帮助理解这些成本之间的关系。",
     decisions: [
@@ -196,7 +196,7 @@ export const projects = [
     tags: ["CUDA", "Tensor Cores", "Profiling"],
     image: "cuda",
     imageAlt: "LeNet 卷积网络结构图",
-    repo: "https://github.com/JerryLinyx/LeNet-CUDA-ECE408",
+    repo: "https://github.com/lynxarv/LeNet-CUDA-ECE408",
     context:
       "卷积性能不仅取决于并行线程数。访存方式、数据复用与硬件特性共同决定实际吞吐量。",
     decisions: [
@@ -221,7 +221,7 @@ export const projects = [
     tags: ["C", "x86 Assembly", "Virtual Memory"],
     image: "os",
     imageAlt: "LOS 物理内存与虚拟内存的映射关系",
-    repo: "https://github.com/JerryLinyx/Linux-OS-Kernel-ECE391/tree/main/mp3",
+    repo: "https://github.com/lynxarv/Linux-OS-Kernel-ECE391/tree/main/mp3",
     context:
       "从底层构建一个操作系统，能把教科书中的进程、内存与设备抽象变成相互配合的真实模块。",
     decisions: [
@@ -244,7 +244,7 @@ export const projects = [
     description:
       "为 Blender 开发生成式 AI 3D 设计插件，支持原型管理、分割与高斯 / 网格转换，结合 Transformer、Diffusion 与 Flask 后端探索文本到 3D 工作流。",
     tags: ["Blender", "Diffusion", "Flask"],
-    repo: "https://github.com/JerryLinyx/AID3-Blender-Plugin",
+    repo: "https://github.com/lynxarv/AID3-Blender-Plugin",
     context:
       "生成一个 3D 结果只是起点。设计者还需要管理原型、调整几何，并把生成能力融入熟悉的工具。",
     decisions: [
