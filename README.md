@@ -1,7 +1,7 @@
 # Yuxuan Lin
 
-Published website: https://lynxarv.github.io/
+Published website: https://awelynx.github.io/
 
-[Website source, content and build instructions](https://github.com/lynxarv/lynxarv.github.io/tree/codex/root-site)
+[Website source, content and build instructions](https://github.com/awelynx/awelynx.github.io/tree/codex/root-site)
 
-This branch contains generated GitHub Pages output. Source commit: 55cb7f5669b5cb2cdbae2a33c8b30a07c57eab3e.
+This branch contains generated GitHub Pages output. Source commit: 5340967f19dc0f4c528f8fed469ce628665a16d0.
