@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-const remote = "https://github.com/lynxarv/lynxarv.github.io.git";
+const remote = "https://github.com/awelynx/awelynx.github.io.git";
 const git = (args, cwd = process.cwd()) =>
   execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
 const run = (command, args) =>
@@ -37,7 +37,7 @@ try {
   await fs.cp(path.resolve("build"), temp, { recursive: true });
   await fs.writeFile(
     path.join(temp, "README.md"),
-    `# Yuxuan Lin\n\nPublished website: https://lynxarv.github.io/\n\n[Website source, content and build instructions](https://github.com/lynxarv/lynxarv.github.io/tree/codex/root-site)\n\nThis branch contains generated GitHub Pages output. Source commit: ${source}.\n`,
+    `# Yuxuan Lin\n\nPublished website: https://awelynx.github.io/\n\n[Website source, content and build instructions](https://github.com/awelynx/awelynx.github.io/tree/codex/root-site)\n\nThis branch contains generated GitHub Pages output. Source commit: ${source}.\n`,
   );
   await fs.writeFile(
     path.join(temp, "site-version.json"),
@@ -67,7 +67,7 @@ try {
   console.log(
     JSON.stringify(
       {
-        url: "https://lynxarv.github.io/",
+        url: "https://awelynx.github.io/",
         sourceCommit: source,
         publishCommit: commit,
       },

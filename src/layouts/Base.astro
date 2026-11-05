@@ -14,7 +14,7 @@ const {
   article = false,
   home = false,
 } = Astro.props;
-const site = "https://lynxarv.github.io";
+const site = "https://awelynx.github.io";
 const canonical = new URL(path, site + "/");
 // The same page in each language, when it has been translated.
 const zhPath = lang === "en" ? path.slice(3) || "/" : path;
@@ -26,7 +26,7 @@ const structuredData = {
   "@type": "Person",
   name: profile.name,
   alternateName: profile.chineseName,
-  url: "https://lynxarv.github.io/",
+  url: "https://awelynx.github.io/",
   email: `mailto:${profile.email}`,
   sameAs: [profile.github, profile.linkedin],
 };
@@ -74,7 +74,7 @@ const nav = ["work", "writing", "life", "about"].map((key) => {
     <meta property="og:url" content={canonical} />
     <meta
       property="og:image"
-      content="https://lynxarv.github.io/social-preview.png"
+      content="https://awelynx.github.io/social-preview.png"
     />
     <link rel="icon" type="image/svg+xml" href="/site-icon.svg" />
     <link

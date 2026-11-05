@@ -1,6 +1,6 @@
 # 林煜轩 · 作品与研究
 
-Published website: **https://lynxarv.github.io/**
+Published website: **https://awelynx.github.io/**
 
 A custom Astro static site. Pages are rendered to HTML at build time; small native JavaScript modules handle the hero flow, search, the mobile menu, reading controls and the gallery. Mermaid is loaded only on pages with diagrams.
 
@@ -78,7 +78,7 @@ The optional second directory is an asset-only fallback. The importer never modi
 
 ## Publication and retired sites
 
-One repository: `lynxarv/lynxarv.github.io`. Maintained source: **`codex/root-site`**. Generated GitHub Pages output: **`master`**.
+One repository: `awelynx/awelynx.github.io`. Maintained source: **`codex/root-site`**. Generated GitHub Pages output: **`master`**.
 
 ```sh
 git push origin codex/root-site

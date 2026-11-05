@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 export default defineConfig({
-  site: "https://lynxarv.github.io",
+  site: "https://awelynx.github.io",
   output: "static",
   outDir: "./build",
   publicDir: "./static",

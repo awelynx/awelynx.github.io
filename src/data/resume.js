@@ -122,7 +122,7 @@ export const projects = [
     title: "PACC：能耗感知的分布式训练通信模拟框架",
     role: "分布式训练及Profiling框架开发",
     period: "2025 年秋季",
-    repo: "https://github.com/lynxarv/PACC",
+    repo: "https://github.com/awelynx/PACC",
     page: "/work/pacc/",
     points: [
       "4人团队协作，设计并搭建基于真实推理/训练执行轨迹的端到端仿真工作流，支持对大规模深度学习系统进行可复用的能耗感知与性能分析。",
@@ -132,7 +132,7 @@ export const projects = [
   {
     title: "FinGOAT：面向金融的图编排智能交易助手",
     role: "AI应用开发",
-    repo: "https://github.com/lynxarv/FinGOAT",
+    repo: "https://github.com/awelynx/FinGOAT",
     page: "/work/fingoat/",
     points: [
       "构建了一个智能美股决策网页应用，解决多智能体串行延迟，决策透明度与易用性问题。",
@@ -151,7 +151,7 @@ export const projects = [
     title: "CUDA-LeNet5：GPU并行加速卷积核优化",
     role: "CUDA算子开发",
     period: "2024 年秋季",
-    repo: "https://github.com/lynxarv/LeNet-CUDA-ECE408",
+    repo: "https://github.com/awelynx/LeNet-CUDA-ECE408",
     page: "/work/cuda-lenet/",
     points: [
       "使用CUDA优化LeNet-5卷积层——采用Streams、Tensor Cores、共享/常量内存分块、量化、循环展开等，优化吞吐量；较CPU朴素实现提速 27,909 倍，较无优化并行基线提升36%。",
@@ -161,7 +161,7 @@ export const projects = [
     title: "LOS：轻量级类Linux操作系统",
     role: "操作系统内核开发",
     period: "2024 年春季",
-    repo: "https://github.com/lynxarv/Linux-OS-Kernel-ECE391/tree/main/mp3",
+    repo: "https://github.com/awelynx/Linux-OS-Kernel-ECE391/tree/main/mp3",
     page: "/work/linux-kernel/",
     points: [
       "4人团队协作，使用C与x86汇编构建类 Linux OS内核。",
@@ -170,7 +170,7 @@ export const projects = [
   },
   {
     title: "基于生成式流模型的医学影像重建",
-    repo: "https://github.com/lynxarv/DeepMed-Imaging-Reconstruction",
+    repo: "https://github.com/awelynx/DeepMed-Imaging-Reconstruction",
     page: "/work/probabilistic-imaging/",
     points: [
       "将 PET（正电子发射断层扫描）重建问题表述为贝叶斯推理问题，实现了深度概率成像流程，提高了重建精度，并为临床诊断提供了关键的不确定性估计。",
@@ -180,7 +180,7 @@ export const projects = [
   {
     title: "基于生成式AI的3D模型设计插件",
     role: "浙江大学 ICI Lab · 科研助理",
-    repo: "https://github.com/lynxarv/AID3-Blender-Plugin",
+    repo: "https://github.com/awelynx/AID3-Blender-Plugin",
     page: "/work/aid3/",
     points: [
       "为Blender开发生成式AI插件，实现3D设计流程自动化——设计原型管理、分割与高斯-网格转换。",
