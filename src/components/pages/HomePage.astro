@@ -2,13 +2,13 @@
 import Base from "../../layouts/Base.astro";
 import FilmHero from "../FilmHero.astro";
 import WorkIndex from "../WorkIndex.astro";
-import { posts, photos, readingRoutes, mediaSize } from "../../lib/content.mjs";
+import { posts, readingRoutes } from "../../lib/content.mjs";
 import { localPath, portfolio, ui } from "../../i18n.js";
 const { lang } = Astro.props;
 const t = ui[lang];
 const { projects, publication, education, profile } = portfolio[lang];
 const about = localPath(lang, "/about/");
-// Writing and life are Chinese-only; English links to them say so.
+// Writing is Chinese-only; English links to it say so.
 const zh = lang === "en" ? "zh-CN" : undefined;
 ---
 
@@ -78,36 +78,6 @@ const zh = lang === "en" ? "zh-CN" : undefined;
           </li>
         ))}
       </ul>
-    </div>
-  </section>
-
-  <section class="reel" data-reel aria-labelledby="life-title">
-    <div class="reel-stage">
-      <header class="wrap block-head">
-        <h2 id="life-title">{t.life}</h2>
-        <a class="more" href="/life/" hreflang={zh}>
-          Singapore, Water & Light
-        </a>
-      </header>
-      <div
-        class="reel-track"
-        data-reel-track
-        tabindex="0"
-        aria-label={t.photoStrip}
-      >
-        {photos.map((p, i) => (
-          <a href={`/life/#photo-${i + 1}`} class="reel-item" hreflang={zh}>
-            <img
-              src={p.url}
-              alt={p.alt}
-              loading="lazy"
-              decoding="async"
-              {...mediaSize(p.url)}
-            />
-            <span>{lang === "en" ? p.english : p.title}</span>
-          </a>
-        ))}
-      </div>
     </div>
   </section>
 </Base>

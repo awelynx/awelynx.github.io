@@ -35,9 +35,6 @@ matchMedia("(min-width:761px)").addEventListener("change", (e) => {
 });
 const still = matchMedia("(prefers-reduced-motion: reduce)");
 const readout = document.querySelector("[data-t]");
-const reel = document.querySelector("[data-reel]");
-const track = reel?.querySelector("[data-reel-track]");
-const reelItems = [...(track?.children || [])];
 const film = document.querySelector("[data-film]");
 // The whole page is one integration: t is 0 at the top and 1 at the bottom.
 function onScroll() {
@@ -51,39 +48,8 @@ function onScroll() {
   const t = span > 0 ? Math.min(1, Math.max(0, scrollY / span)) : 1;
   if (readout) readout.textContent = `t = ${t.toFixed(2)}`;
   document.documentElement.style.setProperty("--t", t.toFixed(4));
-  if (reel && track && reel.classList.contains("is-pinned")) {
-    const r = reel.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-    track.style.translate = `${-p * (track.scrollWidth - track.clientWidth)}px 0`;
-  }
-  // Each photo develops from cyanotype into colour near the middle.
-  if (reelItems.length && !still.matches)
-    for (const item of reelItems) {
-      const r = item.getBoundingClientRect();
-      const d = Math.abs(r.left + r.width / 2 - innerWidth / 2) / innerWidth;
-      item.style.setProperty("--dev", Math.max(0, 1 - d * 1.5).toFixed(3));
-    }
 }
-track?.addEventListener("scroll", onScroll, { passive: true });
-// The photo reel pins and slides sideways as you scroll down, when there is
-// room for it; otherwise it stays a horizontally scrollable strip.
-function sizeReel() {
-  if (!reel || !track) return;
-  const pin = !still.matches && innerWidth > 760;
-  reel.classList.toggle("is-pinned", pin);
-  track.style.translate = "";
-  reel.style.height = pin
-    ? `${innerHeight + track.scrollWidth - track.clientWidth}px`
-    : "";
-}
-sizeReel();
-addEventListener("resize", () => {
-  sizeReel();
-  onScroll();
-});
-still.addEventListener("change", sizeReel);
-for (const img of track?.querySelectorAll("img") || [])
-  if (!img.complete) img.addEventListener("load", sizeReel, { once: true });
+addEventListener("resize", onScroll);
 document.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 for (const list of document.querySelectorAll("[data-work-index]")) {

@@ -44,7 +44,6 @@ export const ui = {
     writingNote: "",
     routesLead: "从一个问题开始",
     life: "生活",
-    photoStrip: "新加坡照片，可横向滚动",
     workLead:
       "从生成式模型到 GPU 内核与操作系统。每个项目写清问题、关键取舍与结果，以及我在团队中的部分。",
     allWork: "全部项目",
@@ -97,7 +96,6 @@ export const ui = {
     writingNote: "My notes and articles are written in Chinese.",
     routesLead: "Start from a question",
     life: "Life",
-    photoStrip: "Photos from Singapore, scroll sideways",
     workLead:
       "From generative models to GPU kernels and operating systems. Each project sets out the problem, the key decisions and the result, and which part was mine.",
     allWork: "All projects",

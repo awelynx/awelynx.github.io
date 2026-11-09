@@ -815,78 +815,6 @@ button {
   }
 }
 
-/* Photo reel: pinned and slid sideways by the scroll; each frame develops
-   from a cyanotype into colour as it passes the middle of the screen. */
-.reel {
-  position: relative;
-  margin-top: clamp(96px, 13vw, 200px);
-}
-.reel-stage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-.reel.is-pinned .reel-stage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  padding-top: var(--header);
-}
-.reel .block-head {
-  margin-bottom: clamp(20px, 3vw, 40px);
-}
-.reel-track {
-  display: flex;
-  gap: clamp(12px, 1.6vw, 24px);
-  padding-inline: var(--gutter);
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  will-change: translate;
-}
-.reel-track::-webkit-scrollbar {
-  display: none;
-}
-.reel.is-pinned .reel-track {
-  overflow: visible;
-}
-.reel-item {
-  position: relative;
-  flex: none;
-  height: min(58svh, 560px);
-  scroll-snap-align: center;
-  overflow: hidden;
-  border-radius: 3px;
-  background: var(--film);
-}
-.reel-item img {
-  width: auto;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(calc(1 - var(--dev, 1))) contrast(1.05);
-  mix-blend-mode: normal;
-  opacity: calc(0.55 + var(--dev, 1) * 0.45);
-  transition: scale 0.8s var(--ease);
-}
-.reel-item:hover img {
-  scale: 1.03;
-}
-.reel-item span {
-  position: absolute;
-  left: 14px;
-  bottom: 12px;
-  font-size: var(--t-s);
-  color: #fff;
-  text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);
-}
-@media (max-width: 760px) {
-  .reel-item {
-    height: 62vw;
-  }
-}
-
 /* Page heads */
 .page-head {
   padding-top: clamp(56px, 9vw, 140px);
@@ -2113,7 +2041,6 @@ button {
   .toc,
   .copy-code,
   .film,
-  .reel,
   .about-links,
   .skip {
     display: none !important;
