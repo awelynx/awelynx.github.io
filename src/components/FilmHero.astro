@@ -1,0 +1,56 @@
+---
+// The home hero: a Remotion film scrubbed by scroll (see src/film/).
+// Without JavaScript, or before the film is ready, the static plate below shows.
+import FilmIsland from "../film/FilmIsland.jsx";
+const { lang = "zh" } = Astro.props;
+const en = lang === "en";
+const text = en
+  ? {
+      name: "Yuxuan Lin",
+      role: "Computer Engineering, Columbia University",
+      captions: [
+        "Agents and AI applications: a merchant marketing assistant at Alibaba, a multi-agent research app for US equities.",
+        "Systems: CUDA kernels, distributed training and a Linux-like kernel in C and x86 assembly.",
+        "Generative models: learned normalizing-flow priors for PET reconstruction, published at IEEE ISBI 2026.",
+      ],
+      formula: [
+        "x₀ ~ N(0, I): every particle starts as Gaussian noise",
+        "dx/dt = v(x, t): each follows a velocity field",
+        "x₁ = 林煜轩, written in Zhao Mengfu's hand",
+        "Same particles, a new target",
+      ],
+      hint: "Scroll to keep integrating",
+    }
+  : {
+      name: "Yuxuan Lin",
+      role: "林煜轩，Columbia University 计算机工程硕士",
+      captions: [
+        "智能体与 AI 应用：阿里国际的商家智能营销助手，面向美股研究的多智能体应用。",
+        "系统：CUDA 内核、分布式训练，以及用 C 与 x86 汇编写成的类 Linux 内核。",
+        "生成式模型：用于 PET 重建的归一化流先验，发表于 IEEE ISBI 2026。",
+      ],
+      formula: [
+        "x₀ ~ N(0, I)：每个粒子都从高斯噪声出发",
+        "dx/dt = v(x, t)：沿着速度场流动",
+        "x₁ = 林煜轩，集自赵孟頫的字",
+        "同一批粒子，换一个目标",
+      ],
+      hint: "继续滚动，继续积分",
+    };
+---
+
+<section class="film" data-film aria-labelledby="film-name">
+  <div class="film-stage" data-film-stage>
+    <div class="film-fallback">
+      <span class="signature" aria-hidden="true"></span>
+      <p class="film-fallback-name" aria-hidden="true">
+        Yuxuan Lin
+      </p>
+      <p class="film-fallback-role">{text.role}</p>
+    </div>
+    <FilmIsland client:only="react" text={text} />
+  </div>
+  <h1 class="sr-only" id="film-name">
+    林煜轩 Yuxuan Lin
+  </h1>
+</section>

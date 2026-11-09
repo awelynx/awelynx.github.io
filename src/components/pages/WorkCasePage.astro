@@ -23,7 +23,7 @@ const related =
       <a class="back" href={localPath(lang, "/work/")}>
         {t.allWorkBack}
       </a>
-      <h1>{p.title}</h1>
+      <h1 style={`view-transition-name: work-${p.slug}`}>{p.title}</h1>
       <p class="case-subtitle">{p.subtitle}</p>
       <dl class="case-meta">
         <div>

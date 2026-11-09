@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/noto-sans/wght.css";
-import "@fontsource-variable/source-serif-4/opsz.css";
+import "@fontsource-variable/bricolage-grotesque/standard.css";
 import "../styles/site.css";
 import { localPath, portfolio, translated, ui } from "../i18n.js";
 const path = Astro.url.pathname;
@@ -48,12 +48,12 @@ const nav = ["work", "writing", "life", "about"].map((key) => {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="theme-color"
-      content="#f1f1ee"
+      content="#eef1f4"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#121316"
+      content="#081430"
       media="(prefers-color-scheme: dark)"
     />
     <meta name="color-scheme" content="light dark" />
@@ -110,6 +110,9 @@ const nav = ["work", "writing", "life", "about"].map((key) => {
         <span class="signature" role="img" aria-label="林煜轩"></span>
         <span>Yuxuan Lin</span>
       </a>
+      <span class="t-readout" aria-hidden="true" data-t>
+        t = 0.00
+      </span>
       <nav class="nav" aria-label={t.navLabel}>
         {nav.map(({ key, url, label, zhOnly }) => (
           <a
@@ -173,29 +176,29 @@ const nav = ["work", "writing", "life", "about"].map((key) => {
     </main>
     <footer class="footer">
       <div class="footer-inner">
-        <div class="footer-contact">
-          <p>{t.footerPitch}</p>
-          <a class="footer-mail" href={`mailto:${profile.email}`}>
-            {profile.email}
-          </a>
+        <p class="footer-pitch">{t.footerPitch}</p>
+        <a class="footer-mail" href={`mailto:${profile.email}`}>
+          {profile.email}
+        </a>
+        <div class="footer-row">
+          <div class="footer-links">
+            <a href={profile.github}>GitHub ↗</a>
+            <a href={profile.linkedin}>LinkedIn ↗</a>
+            <a href="/feed.xml">RSS</a>
+            <a href="/archive/" hreflang="zh-CN">
+              {t.archive}
+            </a>
+          </div>
+          <p class="footer-meta">
+            <span>© 2026 Yuxuan Lin</span>
+            <span class="footer-t" aria-hidden="true">
+              t = 1.00
+            </span>
+            <a href="#top" data-backtop>
+              {t.backTop}
+            </a>
+          </p>
         </div>
-        <div class="footer-links">
-          <a href={profile.github}>GitHub ↗</a>
-          <a href={profile.linkedin}>LinkedIn ↗</a>
-          <a href="/feed.xml">RSS</a>
-          <a href="/archive/" hreflang="zh-CN">
-            {t.archive}
-          </a>
-        </div>
-        <p class="endcard" aria-hidden="true">
-          <span class="signature"></span>
-        </p>
-        <p class="footer-meta">
-          <span>© 2026 Yuxuan Lin</span>
-          <a href="#top" data-backtop>
-            {t.backTop}
-          </a>
-        </p>
       </div>
     </footer>
     <script src="../scripts/site.js"></script>

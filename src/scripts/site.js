@@ -33,17 +33,73 @@ document.addEventListener("click", (e) => {
 matchMedia("(min-width:761px)").addEventListener("change", (e) => {
   if (e.matches) closeMenu();
 });
-const onScroll = () =>
+const still = matchMedia("(prefers-reduced-motion: reduce)");
+const readout = document.querySelector("[data-t]");
+const reel = document.querySelector("[data-reel]");
+const track = reel?.querySelector("[data-reel-track]");
+const reelItems = [...(track?.children || [])];
+const film = document.querySelector("[data-film]");
+// The whole page is one integration: t is 0 at the top and 1 at the bottom.
+function onScroll() {
   header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  // Over the film's blue plate the header switches to the plate's ink.
+  header?.classList.toggle(
+    "on-plate",
+    !!film && film.getBoundingClientRect().bottom > header.offsetHeight,
+  );
+  const span = document.documentElement.scrollHeight - innerHeight;
+  const t = span > 0 ? Math.min(1, Math.max(0, scrollY / span)) : 1;
+  if (readout) readout.textContent = `t = ${t.toFixed(2)}`;
+  document.documentElement.style.setProperty("--t", t.toFixed(4));
+  if (reel && track && reel.classList.contains("is-pinned")) {
+    const r = reel.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+    track.style.translate = `${-p * (track.scrollWidth - track.clientWidth)}px 0`;
+  }
+  // Each photo develops from cyanotype into colour near the middle.
+  if (reelItems.length && !still.matches)
+    for (const item of reelItems) {
+      const r = item.getBoundingClientRect();
+      const d = Math.abs(r.left + r.width / 2 - innerWidth / 2) / innerWidth;
+      item.style.setProperty("--dev", Math.max(0, 1 - d * 1.5).toFixed(3));
+    }
+}
+track?.addEventListener("scroll", onScroll, { passive: true });
+// The photo reel pins and slides sideways as you scroll down, when there is
+// room for it; otherwise it stays a horizontally scrollable strip.
+function sizeReel() {
+  if (!reel || !track) return;
+  const pin = !still.matches && innerWidth > 760;
+  reel.classList.toggle("is-pinned", pin);
+  track.style.translate = "";
+  reel.style.height = pin
+    ? `${innerHeight + track.scrollWidth - track.clientWidth}px`
+    : "";
+}
+sizeReel();
+addEventListener("resize", () => {
+  sizeReel();
+  onScroll();
+});
+still.addEventListener("change", sizeReel);
+for (const img of track?.querySelectorAll("img") || [])
+  if (!img.complete) img.addEventListener("load", sizeReel, { once: true });
 document.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 for (const list of document.querySelectorAll("[data-work-index]")) {
+  let lastX = 0;
+  let tilt = 0;
   list.addEventListener("pointermove", (e) => {
     const box = list.getBoundingClientRect();
-    // Keep the preview (300px wide, offset 32px) inside the list.
-    const x = Math.min(e.clientX - box.left, box.width - 340);
+    // Keep the preview (360px wide, offset 32px) inside the list.
+    const x = Math.min(e.clientX - box.left, box.width - 400);
     list.style.setProperty("--peek-x", `${x}px`);
     list.style.setProperty("--peek-y", `${e.clientY - box.top}px`);
+    // Lean the preview into the direction of travel.
+    tilt =
+      tilt * 0.7 + Math.max(-8, Math.min(8, (e.clientX - lastX) * 0.4)) * 0.3;
+    lastX = e.clientX;
+    list.style.setProperty("--peek-tilt", `${still.matches ? 0 : tilt}deg`);
   });
 }
 document.querySelector("[data-backtop]")?.addEventListener("click", (e) => {
@@ -102,11 +158,17 @@ for (const pre of document.querySelectorAll(".prose pre")) {
     pre.append(button);
   }
 }
-for (const el of document.querySelectorAll(
-  ".prose table,.prose .katex-display,.prose p>.katex",
-)) {
-  if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
+// Wide tables and formulas scroll sideways, so keyboards must reach them.
+// Re-check once fonts settle, since KaTeX widths change when they load.
+function focusOverflow() {
+  for (const el of document.querySelectorAll(
+    ".prose table,.prose .katex-display,.prose p>.katex",
+  ))
+    if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
 }
+focusOverflow();
+document.fonts?.ready.then(focusOverflow);
+addEventListener("load", focusOverflow);
 const progress = document.querySelector(".progress span");
 if (progress) {
   const update = () => {
@@ -405,10 +467,10 @@ if (diagrams.length) {
         securityLevel: "strict",
         theme: "base",
         themeVariables: {
-          primaryColor: "#eceaff",
-          primaryTextColor: "#17181b",
-          primaryBorderColor: "#3a2ee8",
-          lineColor: "#5f626a",
+          primaryColor: "#e3ebfb",
+          primaryTextColor: "#0d1b36",
+          primaryBorderColor: "#1b3f8b",
+          lineColor: "#5b6880",
           fontFamily: getComputedStyle(document.body).fontFamily,
         },
         suppressErrorRendering: true,

@@ -48,7 +48,7 @@ const sources = (
   await Promise.all(["src", "content", "docs", "blog", "plog"].map(walk))
 )
   .flat()
-  .filter((f) => /\.(astro|mjs|js|json|mdx?|css)$/.test(f));
+  .filter((f) => /\.(astro|mjs|jsx?|json|mdx?|css)$/.test(f));
 const chars = new Set();
 for (const file of sources)
   for (const ch of await fs.readFile(file, "utf8"))

@@ -80,8 +80,7 @@ for (const file of htmlFiles) {
 }
 const home = await fs.readFile(path.join(root, "index.html"), "utf8");
 for (const expected of [
-  "data-flow",
-  "data-montage",
+  "data-film",
   "/work/",
   "/writing/",
   "/life/",

@@ -8,7 +8,12 @@ const Heading = `h${headingLevel}`;
   {items.map((p) => (
     <li>
       <a class="work-row" href={localPath(lang, `/work/${p.slug}/`)}>
-        <Heading class="work-title">{p.title}</Heading>
+        <Heading
+          class="work-title"
+          style={`view-transition-name: work-${p.slug}`}
+        >
+          {p.title}
+        </Heading>
         <span class="work-sub">{p.subtitle}</span>
         <span class="work-cat">{p.category}</span>
         <span class="work-year">{p.year}</span>

@@ -2,7 +2,7 @@
 
 Published website: **https://awelynx.github.io/**
 
-A custom Astro static site. Pages are rendered to HTML at build time; small native JavaScript modules handle the hero flow, search, the mobile menu, reading controls and the gallery. Mermaid is loaded only on pages with diagrams.
+A custom Astro static site. Pages are rendered to HTML at build time; a Remotion film (one React island) is the home hero, and small native JavaScript modules handle search, the mobile menu, reading controls, the photo reel and the gallery. Mermaid is loaded only on pages with diagrams.
 
 ## Start and verify
 
@@ -34,7 +34,7 @@ npm run qa:a11y
 
 | Section | Route | Content |
 | --- | --- | --- |
-| Home | `/` | Retro-computer hero (particles flow from noise to the name), facts, fractal interlude, project index, reading routes, photo strip |
+| Home | `/` | Scroll-scrubbed Remotion film (particles flow from noise to the signature, then to three words), intro and facts, project index, reading routes, pinned photo reel |
 | Work | `/work/` | Six projects with case studies |
 | Writing | `/writing/` | Reading routes, 17 articles and 25 notes/resources, full-text search, type/topic filters, shareable queries |
 | Life | `/life/` | Singapore · Water & Light photo log |
@@ -47,11 +47,10 @@ npm run qa:a11y
 
 - `astro.config.mjs`: static build and root-domain settings.
 - `src/layouts/Base.astro`: global document, navigation and footer.
-- `src/styles/site.css`: the single stylesheet (tokens, light/dark, pages, print, reduced motion).
-- `src/components/FlowHero.astro` + `src/scripts/flow.js`: the retro-computer home hero, a Canvas 2D flow from Gaussian noise to the glyphs of the name with a `t` fader; static text without JavaScript, finished state under reduced motion.
-- `src/components/Montage.astro` + `src/scripts/montage.js`: the generated fractal interlude.
-- `src/components/WorkIndex.astro`: project index with hover previews.
-- `src/scripts/site.js`: menu, search, reader, lightbox and Mermaid.
+- `src/styles/site.css`: the single stylesheet (cyanotype tokens, light/dark, pages, view transitions, print, reduced motion). The page is designed as one integration from noise (t = 0, top) to data (t = 1, footer); the header shows the current t.
+- `src/components/FilmHero.astro` + `src/film/`: the home hero. `FlowFilm.jsx` is a Remotion composition (a pure function of the frame); `FilmIsland.jsx` samples the signature and words into particle targets and drives `@remotion/player` from the scroll position. Static signature without JavaScript, held at the signature under reduced motion.
+- `src/components/WorkIndex.astro`: project index with cursor-following cyanotype previews; titles morph into case pages through cross-document view transitions.
+- `src/scripts/site.js`: header t readout, photo reel, menu, search, reader, lightbox and Mermaid.
 - `src/data/portfolio.js`: profile, education, experience, publication, projects and tools — wording follows the original resume.
 - `src/lib/content.mjs`: Markdown, KaTeX, highlighting, old-content mapping and historical HTML rendering.
 - `docs/notes/`: authorized imported Obsidian notes; duplicate Flow Matching is consolidated into the dated article. The eight excluded outlines remain unpublished.
