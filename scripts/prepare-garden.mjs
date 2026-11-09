@@ -43,7 +43,6 @@ for (const p of photos)
     .webp({ quality: 86 })
     .toFile("static" + p.url);
 for (const [source, name, width] of [
-  ["YuxuanLin.jpg", "portrait", 1000],
   ["infra.png", "fingoat", 1600],
   ["pacc.png", "pacc", 1600],
   ["PET.png", "imaging", 1600],

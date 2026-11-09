@@ -1704,10 +1704,7 @@ button {
 
 /* About */
 .about-head {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-  gap: 40px clamp(32px, 5vw, 80px);
-  align-items: end;
+  max-width: 62rem;
   padding-top: clamp(48px, 7vw, 112px);
 }
 .about-head h1 {
@@ -1745,14 +1742,6 @@ button {
 .about-links a:hover {
   background: var(--ink);
   color: var(--paper);
-}
-.portrait {
-  overflow: hidden;
-  border-radius: 3px;
-  background: var(--film);
-}
-.portrait img {
-  width: 100%;
 }
 .cv {
   display: grid;
@@ -1865,12 +1854,8 @@ button {
   content: none;
 }
 @media (max-width: 860px) {
-  .about-head,
   .cv section {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .portrait {
-    max-width: 420px;
   }
 }
 

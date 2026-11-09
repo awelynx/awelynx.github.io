@@ -1,6 +1,5 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { mediaSize } from "../../lib/content.mjs";
 import { localPath, portfolio, resume, ui } from "../../i18n.js";
 const { lang } = Astro.props;
 const t = ui[lang];
@@ -17,7 +16,6 @@ const {
 const l = {
   zh: {
     pdf: "下载简历 PDF",
-    portrait: "林煜轩站在挂满红灯笼的古街上",
     education: "教育背景",
     experience: "工作经历",
     projects: "项目经历",
@@ -34,7 +32,6 @@ const l = {
   },
   en: {
     pdf: "Download CV (PDF, Chinese)",
-    portrait: "Yuxuan Lin on an old street hung with red lanterns",
     education: "Education",
     experience: "Experience",
     projects: "Projects",
@@ -81,14 +78,6 @@ const l = {
         </a>
       </p>
     </div>
-    <figure class="portrait">
-      <img
-        src="/media/portrait.webp"
-        alt={l.portrait}
-        {...mediaSize("/media/portrait.webp")}
-        fetchpriority="high"
-      />
-    </figure>
   </header>
 
   <div class="wrap cv">
