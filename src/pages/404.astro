@@ -31,17 +31,18 @@ const svg = `
   <section class="wrap not-found">
     <figure class="desk" set:html={svg} />
     <h1>找找这个数字。</h1>
-    <p class="lead">这个地址没有内容，页面可能已经移动。可以从这些地方继续：</p>
+    <p class="lead">
+      这个地址没有内容，页面可能已经移动或下线。可以从这些地方继续：
+    </p>
     <p class="nf-links">
       <a href="/">首页</a>
       <a href="/work/">作品</a>
       <a href="/writing/">写作</a>
-      <a href="/archive/">旧日存档</a>
     </p>
     <div lang="en">
       <p class="lead">
-        Nothing lives at this address; the page may have moved. Carry on from
-        here:
+        Nothing lives at this address; the page may have moved or been retired.
+        Carry on from here:
       </p>
       <p class="nf-links">
         <a href="/en/">Home</a>
@@ -49,5 +50,37 @@ const svg = `
         <a href="/en/about/">About</a>
       </p>
     </div>
+    <p class="nf-return" data-return>
+      <span data-return-text>5 秒后回到首页。</span>
+      <button type="button" class="link-button" data-return-stop>
+        留在这里
+      </button>
+    </p>
   </section>
+  <script>
+    // Count down, then go to the home page in the visitor's language. The
+    // visitor can stop it; reduced motion does not change it, as it is navigation.
+    const box = document.querySelector("[data-return]");
+    const text = box.querySelector("[data-return-text]");
+    const stop = box.querySelector("[data-return-stop]");
+    const en = location.pathname.startsWith("/en/");
+    const home = en ? "/en/" : "/";
+    const say = (n) =>
+      en ? `Going to the home page in ${n} s.` : `${n} 秒后回到首页。`;
+    if (en) stop.textContent = "Stay here";
+    let n = 5;
+    text.textContent = say(n);
+    const timer = setInterval(() => {
+      n -= 1;
+      if (n > 0) text.textContent = say(n);
+      else {
+        clearInterval(timer);
+        location.replace(home);
+      }
+    }, 1000);
+    stop.addEventListener("click", () => {
+      clearInterval(timer);
+      box.remove();
+    });
+  </script>
 </Base>

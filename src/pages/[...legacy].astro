@@ -1,31 +1,9 @@
 ---
-import Base from "../layouts/Base.astro";
-import {
-  legacy,
-  oldRoutes,
-  prepareHtml,
-  archiveCanonical,
-} from "../lib/content.mjs";
+// Old URLs from earlier versions of the site. Those whose content lives on
+// redirect to the current page; the retired archive is gone and falls to 404.
+import { oldRoutes } from "../lib/content.mjs";
 import redirects from "../../scripts/legacy-redirects.json";
-import "katex/dist/katex.min.css";
 export function getStaticPaths() {
-  const snapshots = [...legacy.articles, ...legacy.extras].map((a) => ({
-    params: { legacy: a.archive.replace(/^\//, "").replace(/\/$/, "") },
-    props: archiveCanonical.has(a.archive)
-      ? { to: archiveCanonical.get(a.archive) }
-      : { snapshot: a },
-  }));
-  snapshots.push({
-    params: { legacy: "archive/cv" },
-    props: {
-      snapshot: {
-        title: "个人简历 / 2025",
-        html: legacy.cv.html,
-        date: "2025",
-        archive: "/archive/cv/",
-      },
-    },
-  });
   const routes = new Map(oldRoutes);
   for (const r of redirects) {
     const to = oldRoutes.get(r.to) || r.to;
@@ -39,68 +17,34 @@ export function getStaticPaths() {
     "/docs/",
   ])
     routes.set(from, "/writing/");
-  const reserved = new Set([
-    "/",
-    "/archive/",
-    "/work/",
-    "/writing/",
-    "/life/",
-    "/about/",
-    ...snapshots.map((s) => "/" + s.params.legacy + "/"),
-  ]);
-  return [
-    ...snapshots,
-    ...[...routes]
-      .filter(
-        ([from]) => !/^\/(Doc|CV)(\/|$)/.test(from) && !reserved.has(from),
-      )
-      .map(([from, to]) => ({
-        params: { legacy: from.replace(/^\//, "").replace(/\/$/, "") },
-        props: { to },
-      })),
-  ];
+  const reserved = new Set(["/", "/work/", "/writing/", "/life/", "/about/"]);
+  return [...routes]
+    .filter(
+      ([from, to]) =>
+        !/^\/(Doc|CV)(\/|$)/.test(from) &&
+        !reserved.has(from) &&
+        ![from, to].some((u) => /^\/archive(\/|$)/.test(u)),
+    )
+    .map(([from, to]) => ({
+      params: { legacy: from.replace(/^\//, "").replace(/\/$/, "") },
+      props: { to },
+    }));
 }
-const { snapshot, to } = Astro.props;
-const html = snapshot ? prepareHtml(snapshot.html).html : "";
+const { to } = Astro.props;
 ---
 
-{to ? (
-  <html lang="zh-CN">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>内容已移到新位置 · 林煜轩</title>
-      <meta http-equiv="refresh" content={`0;url=${to}`} />
-      <link
-        rel="canonical"
-        href={new URL(to, "https://awelynx.github.io")}
-      />
-      <meta name="robots" content="noindex" />
-    </head>
-    <body>
-      <p>
-        这篇内容已移到新的位置。<a href={to}>前往新页面</a>
-      </p>
-    </body>
-  </html>
-) : (
-  <Base title={`${snapshot.title} · 历史存档 · 林煜轩`}>
-    <article class="wrap reader">
-      <header class="reader-head">
-        <a class="back" href="/archive/">
-          旧日存档
-        </a>
-        <h1>{snapshot.title}</h1>
-        <p class="reader-meta">
-          <span>历史版本{snapshot.date ? `，${snapshot.date}` : ""}</span>
-        </p>
-        <p class="notice">
-          这是历史版本，其中的信息和观点可能已经过时。
-          <a href="/writing/">阅读现行文章</a>，或
-          <a href="/about/">查看当前简介</a>。
-        </p>
-      </header>
-      <div class="prose archive-prose" set:html={html} />
-    </article>
-  </Base>
-)}
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>内容已移到新位置 · 林煜轩</title>
+    <meta http-equiv="refresh" content={`0;url=${to}`} />
+    <link rel="canonical" href={new URL(to, "https://awelynx.github.io")} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <p>
+      这篇内容已移到新的位置。<a href={to}>前往新页面</a>
+    </p>
+  </body>
+</html>

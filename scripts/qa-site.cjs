@@ -5,7 +5,7 @@ const assert = require("node:assert/strict");
 const base = process.env.PREVIEW_URL || "http://127.0.0.1:3091/";
 const a11y = process.argv.includes("--a11y");
 (async () => {
-  const { posts, legacy } = await import("../src/lib/content.mjs");
+  const { posts } = await import("../src/lib/content.mjs");
   await fs.mkdir("output/playwright/archive", { recursive: true });
   const browser = await chromium.launch({
     headless: true,
@@ -43,8 +43,6 @@ const a11y = process.argv.includes("--a11y");
     "writing/",
     "life/",
     "about/",
-    "archive/",
-    "archive/cv/",
     "writing/notes/hpc/cuda/",
     "writing/notes/algo/flow-based-model/",
   ];
@@ -193,18 +191,6 @@ const a11y = process.argv.includes("--a11y");
       assert.deepEqual(layout.broken, [], post.slug);
       assert.ok(layout.body > 0, post.slug);
     }
-    for (const a of legacy.articles) {
-      const r = await page.goto(new URL(a.archive, base).href, {
-        waitUntil: "networkidle",
-      });
-      assert.equal(r.status(), 200);
-      const scroll = await page.evaluate(() => ({
-        width: innerWidth,
-        scroll: document.documentElement.scrollWidth,
-      }));
-      assert.ok(scroll.scroll <= scroll.width + 1, "Archive overflow " + a.key);
-      checks.push({ archive: a.key, ...scroll, pass: true });
-    }
     for (const [old, target] of [
       ["projects/fingoat/", "work/fingoat/"],
       ["resume/", "about/"],
@@ -225,7 +211,7 @@ const a11y = process.argv.includes("--a11y");
       await page.waitForURL(new URL(target, base).href);
       checks.push({ redirect: old, to: target, pass: true });
     }
-    for (const old of ["Doc/", "CV/"]) {
+    for (const old of ["Doc/", "CV/", "archive/", "archive/cv/"]) {
       const r = await context.request.get(new URL(old, base).href);
       assert.equal(r.status(), 404);
       checks.push({ retired: old, status: 404 });

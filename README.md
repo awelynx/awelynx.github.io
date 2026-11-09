@@ -39,7 +39,6 @@ npm run qa:a11y
 | Writing | `/writing/` | Reading routes, 17 articles and 25 notes/resources, full-text search, type/topic filters, shareable queries |
 | Life | `/life/` | Singapore · Water & Light photo log |
 | About | `/about/` | Original resume: education, experience, publication, projects, tools; printable |
-| Archive | `/archive/` | 17 historical records (10 shared canonical bodies, seven distinct editions), historical CV and old links |
 
 `/research/` redirects to `/about/#research`; `/life/singapore/` redirects to `/life/`. RSS: `/feed.xml`. Sitemap: `/sitemap.xml`. No external analytics or runtime font requests.
 
@@ -86,7 +85,7 @@ npm run deploy
 
 The publisher requires a clean, pushed source commit, builds and verifies the site, then makes a normal fast-forward push to `master`. Publication records `/site-version.json` and preserves both the preceding deployment and exact source commit as parents. Credentials are handled by normal Git authentication; no tokens are extracted.
 
-**Doc and CV repositories must remain intact, and their websites must remain unpublished.** Both Pages sources were set to `None`; `/Doc/` and `/CV/` have no redirects and must return HTTP 404. Build verification rejects either prefix. Former root content routes (`/notes/`, `/blog/…`, `/docs/notes/…`, `/projects/…`, `/resume/`) map to the new corresponding routes. Date-based Hexo links and `/archive/…` originals are preserved.
+**Doc and CV repositories must remain intact, and their websites must remain unpublished.** Both Pages sources were set to `None`; `/Doc/` and `/CV/` have no redirects and must return HTTP 404. Build verification rejects either prefix. Former root content routes (`/notes/`, `/blog/…`, `/docs/notes/…`, `/projects/…`, `/resume/`) map to the new corresponding routes. Date-based Hexo links still redirect to current posts. The old-site archive (`/archive/…`, including the historical CV) is retired: those URLs return 404, and the 404 page returns visitors to the home page after five seconds.
 
 Full previous root, Doc and CV Git histories remain reachable through consolidation commit `cc2311cb262602eb23faabbb6bc71d747154ac0f`. Local full mirrors are retained under ignored `.migration/backups/`. Deployment and migration records: `docs/plans/2026-10-23-deployment.md`, `docs/plans/2026-10-23-root-migration.md`. Current design: `docs/plans/2026-10-23-site-redesign.md`.
 

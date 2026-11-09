@@ -1,5 +1,5 @@
 // Chinese lives at the root; English mirrors the pages that have a translation
-// under /en/. Writing, life and the archive stay Chinese-only.
+// under /en/. Writing and life stay Chinese-only.
 import * as zhPortfolio from "./data/portfolio.js";
 import * as enPortfolio from "./data/portfolio.en.js";
 import * as zhResume from "./data/resume.js";
@@ -29,7 +29,6 @@ export const ui = {
     switchLabel: "English",
     switchText: "EN",
     footerPitch: "聊聊 AI、系统，或一个尚未成形的想法。",
-    archive: "旧日存档",
     backTop: "回到顶部",
     feedTitle: "林煜轩 · 写作",
     facts: "简介",
@@ -81,7 +80,6 @@ export const ui = {
     switchText: "中",
     footerPitch:
       "Talk to me about AI, systems, or an idea that isn't fully formed yet.",
-    archive: "Archive (Chinese)",
     backTop: "Back to top",
     feedTitle: "Yuxuan Lin · Writing (Chinese)",
     facts: "Overview",

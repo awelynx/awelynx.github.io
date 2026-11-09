@@ -768,13 +768,6 @@
       "bytes": 3604156
     },
     {
-      "from": "/legacy-assets/f5ad0b16d82065.jpg",
-      "to": "/index/YuxuanLin.jpg",
-      "keeper": "static/index/YuxuanLin.jpg",
-      "removed": "static/legacy-assets/f5ad0b16d82065.jpg",
-      "bytes": 134256
-    },
-    {
       "from": "/legacy-assets/dcb5af2ea177fc.png",
       "to": "/index/fish.png",
       "keeper": "static/index/fish.png",
